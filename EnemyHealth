@@ -3,40 +3,30 @@ using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
-
     public float initialHealth = 100.0f;
 
     public float currentHealth;
     public float dmg;
     
-    
-
     void Start()
     {
         currentHealth = initialHealth;
-       // dmg = GetComponentInChildren<DamageInfo>().totalDamage;
-
+      //  dmg = GetComponentInChildren<DamageInfo>().totalDamage;
+        
     }
     private void Update()
     {
-        dmg = GetComponentInChildren<DamageInfo>().totalDamage;
-        
-       // currentHealth =- dmg;
-
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
+        TakeDamage();
 
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage()
     {
-       // dmg = GetComponentInChildren<DamageInfo>().totalDamage;
-       
-        currentHealth -= dmg;
+         dmg = GetComponentInChildren<DamageInfo>().totalDamage;
 
-        if (currentHealth <= 0)
+         currentHealth -= dmg;
+
+        if (currentHealth < 0)
        {
            Destroy(gameObject);
        }
