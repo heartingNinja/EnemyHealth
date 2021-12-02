@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public float initialHealth = 100.0f;
+    public float initialHealth = 1000.0f;
     public GameObject dead;
 
     private float currentHealth;
