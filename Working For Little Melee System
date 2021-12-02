@@ -1,0 +1,42 @@
+using UnityEngine;
+using System.Collections;
+
+public class EnemyHealth : MonoBehaviour
+{
+    public float initialHealth = 100.0f;
+    public GameObject dead;
+
+    private float currentHealth;
+    private float dmgHead;
+    private float dmgBody;
+    private float dmgArm;
+    
+
+    void Start()
+    {
+        currentHealth = initialHealth;
+    //  dmg = GetComponentInChildren<DamageInfo>().totalDamage;
+        
+    }
+    private void Update()
+    {
+        TakeDamage();
+
+    }
+
+    public void TakeDamage()
+    {
+        dmgHead = GetComponentInChildren<DamageInfo>().totalDamage;
+        dmgBody = GetComponentInChildren<DamageInfoBody>().totalDamage;
+        dmgArm = GetComponentInChildren<DamageInfoArms>().totalDamage;
+
+        currentHealth -= dmgHead + dmgBody + dmgArm;
+
+        if (currentHealth < 0)
+       {
+            Vector3 deathPos = this.gameObject.transform.position;
+            Destroy(gameObject);
+            GameObject prefabToSpawn = Instantiate(dead, deathPos, Quaternion.identity);
+        }
+    }
+}
